@@ -54,24 +54,7 @@ class User(commands.Cog):
         )
         await ctx.send(embed=mbed)
 
-    @cog_ext.cog_slash(description="Screenshots the screen of owner of bot!")
-    async def screenshot(self, ctx):
-        if ctx.author.id == 838402467858612224:
-            pyautogui.screenshot("./screenshot.jpg")
-            await ctx.send(file=discord.File("./screenshot.jpg"))
-        else:
-            await ctx.send("No more screenshots thats only for owner")
-
-    @cog_ext.cog_slash(description="Makes message box on creators screen", options=[
-        create_option(name="msg", description="What to write", option_type=3, required=True)
-    ])
-    async def msgbox(self, ctx, msg: str):
-        if ctx.author.id == 838402467858612224:
-            await ctx.send("Noname got your message!")
-            ctypes.windll.user32.MessageBoxW(0, msg, "New message!", 1)
-        else:
-            await ctx.send("No more msgboxes thats only for owner")
-
+   
     @cog_ext.cog_slash(description="Checks the ping of bot!")
     async def ping(self, ctx):
         mbed = Embed(
@@ -108,27 +91,6 @@ class User(commands.Cog):
         mbed.set_author(name="Here is your meme!")
         await msg.edit(content="", embed=mbed)
 
-    @cog_ext.cog_slash(description="Say something in voice", options=[
-        create_option(name="tosay", description="Write what to say!", option_type=3, required=True),
-        create_option(name="voice", description="Choose a voice!", option_type=3, required=True, choices=[
-            create_choice(
-                value="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\IVONA OEM NextUp OpenSAPI maxim22",
-                name="Man_RU"),
-            create_choice(value="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_RU-RU_IRINA_11.0",
-                          name="Woman_RU"),
-            create_choice(value="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0",
-                          name="Man_EN"),
-            create_choice(value="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0",
-                          name="Woman_EN"),
-        ])
-    ])
-    async def say(self, ctx, tosay: str, voice: str):
-        engine = pyttsx3.init()
-        voices = engine.getProperty('voices')
-        engine.setProperty('voice', voice)
-        engine.save_to_file(tosay, './say.mp3')
-        engine.runAndWait()
-        await ctx.send(file=discord.File("./say.mp3"))
 
     @cog_ext.cog_slash(description="Information of the bot!")
     async def info(self, ctx):
