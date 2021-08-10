@@ -1,4 +1,3 @@
-import pyautogui
 import random
 import ctypes
 import asyncpraw
