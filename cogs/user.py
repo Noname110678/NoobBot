@@ -111,7 +111,7 @@ class User(commands.Cog):
             color=Colour.random()
         )
         embed.add_field("info", "Shows the info of the bot!", False)
-        ctx.send(embed=embed)
+        await ctx.send(embed=embed)
 
 
     @commands.command()
