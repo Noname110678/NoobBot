@@ -9,7 +9,7 @@ import asyncio
 
 # JSON THING LOAD FROM JSON FILE TO PYTHON
 
-configFile = open("config.json", "r") # lmao
+configFile = open("config.json", "r") # lmao # what why
 configJSON = configFile.read()
 obj = json.loads(configJSON)
 token = obj["token"]
@@ -31,8 +31,7 @@ async def on_ready():
 # COGS COMMANDS
 
 
-@slash.slash(description="Load the cogs!", options=[
-create_option(name="extension", description="You should say what extension should it be!", option_type=3,required=True)])
+@commands.command()
 async def load(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":
@@ -47,10 +46,7 @@ async def load(ctx, extension: str):
         await ctx.send("youre not dev of this bot dont try this thing")
 
 
-@slash.slash(description="Unload the cogs!", options=[
-    create_option(name="extension", description="You should say what extension should it be!", option_type=3,
-                  required=True)
-])
+@commands.command()
 async def unload(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":
@@ -65,10 +61,7 @@ async def unload(ctx, extension: str):
         await ctx.send("youre not dev of this bot dont try this thing")
 
 
-@slash.slash(description="Reload the cogs!", options=[
-    create_option(name="extension", description="You should say what extension should it be!", option_type=3,
-                  required=True)
-])
+@commands.command()
 async def reload(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":

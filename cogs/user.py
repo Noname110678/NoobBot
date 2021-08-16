@@ -21,9 +21,7 @@ class User(commands.Cog):
             if msg.author != self.bot.user:
                 await msg.add_reaction("🆗")
 
-    @cog_ext.cog_slash(name="ball",description="Ask a question to the ball", options=[
-        create_option(name="question",description="The question", option_type=3,required=True)
-    ])
+    @commands.command()
     async def ball(self, ctx, question: str):
         responses = ["It is certain.",
                      "It is decidedly so.",
@@ -54,7 +52,7 @@ class User(commands.Cog):
         await ctx.send(embed=mbed)
 
    
-    @cog_ext.cog_slash(description="Checks the ping of bot!")
+    @commands.command()
     async def ping(self, ctx):
         mbed = Embed(
             title="Pong!",
@@ -63,7 +61,7 @@ class User(commands.Cog):
         )
         await ctx.send(embed=mbed)
 
-    @cog_ext.cog_slash(description="Get a meme!")
+    @commands.command()
     async def meme(self, ctx):
         msg = await ctx.send("Loading meme ... <a:Loading:845258574434795570>")
         reddit = asyncpraw.Reddit(client_id="16udYmOO1rdFRF0BgZk1bQ",
@@ -91,7 +89,7 @@ class User(commands.Cog):
         await msg.edit(content="", embed=mbed)
 
 
-    @cog_ext.cog_slash(description="Information of the bot!")
+    @commands.command()
     async def info(self, ctx):
         mbed = Embed(
             title="Information of the bot",
@@ -105,12 +103,21 @@ class User(commands.Cog):
         pog_msg = await ctx.send(embed=mbed)
         await pog_msg.add_reaction("👍")
 
-    @cog_ext.cog_slash(description="Sends demotivator pic!", options=[
-        create_option(name="url", description="Url for demotivator", option_type=3, required=True),
-        create_option(name="toptext", description="Top Text for demotivator pic", option_type=3, required=True),
-        create_option(name="bottomtext", description="Bottom Text for demotivator pic", option_type=3, required=False)
-    ])
-    async def demotivator(self, ctx, url: str, toptext: str, bottomtext: str = ""):
+    @commands.command()
+    async def help(self, ctx, cmd):
+        embed = Embed(
+            title="Commands list of NoobBot",
+            description=">help <command> to show description and use syntax of specified command!",
+            color=Colour.random()
+        )
+        embed.add_field("info", "Shows the info of the bot!", False)
+
+
+    @commands.command()
+    async def demotivator(self, ctx):
+        toptext = ctx.message.split(";")[0]
+        bottomtext = ctx.message.split(";")[1]
+        url = ctx.message.split(";")[2]
         dem = Demotivator(f'{toptext}', f'{bottomtext}')
         dem.create(f"{url}", url=True)
         await ctx.send(file=discord.File("./demresult.jpg"))
