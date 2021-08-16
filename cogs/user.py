@@ -119,14 +119,14 @@ class User(commands.Cog):
                     description="Tells the info of the bot!",
                     color=Colour.random()
                 )
-            ctx.send(embed=mbed)
+            await ctx.send(embed=mbed)
         elif cmd == "ping":
                 mbed = Embed(
                     title="Ping Command",
                     description="Tells the ping of bot!",
                     color=Colour.random()
                 )
-                ctx.send(embed=mbed)
+                await ctx.send(embed=mbed)
         elif cmd == "":
             await ctx.send(embed=embed)
 
