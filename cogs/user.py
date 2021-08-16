@@ -95,7 +95,7 @@ class User(commands.Cog):
             title="Information of the bot",
             colour=Colour.random()
         )
-        mbed.add_field(name="Creator", value="NonameTheSus#0437", inline=False)
+        mbed.add_field(name="Creator", value="Noname1105#0437", inline=False)
         mbed.add_field(name="Using", value="Discord.py", inline=False)
         mbed.add_field(name="Bot was created", value="7/2/2021, 2:18:55 PM (Creator's time)", inline=False)
         mbed.set_thumbnail(
