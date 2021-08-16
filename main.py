@@ -9,7 +9,7 @@ import asyncio
 
 # JSON THING LOAD FROM JSON FILE TO PYTHON
 
-configFile = open("config.json", "r")
+configFile = open("config.json", "r") # lmao
 configJSON = configFile.read()
 obj = json.loads(configJSON)
 token = obj["token"]
