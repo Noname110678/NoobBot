@@ -104,7 +104,7 @@ class User(commands.Cog):
         await pog_msg.add_reaction("👍")
 
     @commands.command()
-    async def help(self, ctx, cmd = None):
+    async def help(self, ctx, cmd=""):
         embed = Embed(
             title="Commands list of NoobBot",
             description=">help <command> to show description and use syntax of specified command!",
@@ -113,22 +113,21 @@ class User(commands.Cog):
         embed.add_field(name="info", value="Shows the info of the bot!", inline=False)
         embed.add_field(name="ping", value="Shows the ping of the bot!", inline=False)
 
-        if cmd is not None:
-            if cmd == "info":
-                mbed = Embed(
+        if cmd == "info":
+            mbed = Embed(
                     title="Info Command",
                     description="Tells the info of the bot!",
                     color=Colour.random()
                 )
-                ctx.send(embed=mbed)
-            elif cmd == "ping":
+            ctx.send(embed=mbed)
+        elif cmd == "ping":
                 mbed = Embed(
                     title="Ping Command",
                     description="Tells the ping of bot!",
                     color=Colour.random()
                 )
                 ctx.send(embed=mbed)
-        else:
+        elif cmd == "":
             await ctx.send(embed=embed)
 
 
