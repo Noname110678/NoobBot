@@ -31,7 +31,7 @@ async def on_ready():
 # COGS COMMANDS
 
 
-@commands.command()
+@bot.command()
 async def load(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":
@@ -46,7 +46,7 @@ async def load(ctx, extension: str):
         await ctx.send("youre not dev of this bot dont try this thing")
 
 
-@commands.command()
+@bot.command()
 async def unload(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":
@@ -61,7 +61,7 @@ async def unload(ctx, extension: str):
         await ctx.send("youre not dev of this bot dont try this thing")
 
 
-@commands.command()
+@bot.command()
 async def reload(ctx, extension: str):
     if ctx.author.id == 838402467858612224:
         if extension == "all":
@@ -77,6 +77,11 @@ async def reload(ctx, extension: str):
     else:
         await ctx.send("youre not dev of this bot dont try this thing")
 
+@bot.command()
+async def oof(ctx):
+    if ctx.author.id == 838402467858612224:
+        ctx.send("OOFING BOT...")
+        quit()
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):

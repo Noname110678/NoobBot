@@ -127,15 +127,23 @@ class User(commands.Cog):
                     color=Colour.random()
                 )
                 await ctx.send(embed=mbed)
+        elif cmd == "demotivator":
+            mbed = Embed(
+                title="Demotivator Command",
+                description="Creates demotivator!",
+                color=Colour.random()
+            )
+            mbed.add_field(name="Syntax",value=">demotivator <top>Top text<top> <bottom>Bottom Text<bottom> <url>url of picture<url>")
+            await ctx.send(embed=mbed)
         elif cmd == "":
             await ctx.send(embed=embed)
 
 
     @commands.command()
     async def demotivator(self, ctx):
-        toptext = ctx.message.split(";")[0]
-        bottomtext = ctx.message.split(";")[1]
-        url = ctx.message.split(";")[2]
+        toptext = ctx.message.split("<top>")[1]
+        bottomtext = ctx.message.split("<bottom>")[1]
+        url = ctx.message.split("<url>")[1]
         dem = Demotivator(f'{toptext}', f'{bottomtext}')
         dem.create(f"{url}", url=True)
         await ctx.send(file=discord.File("./demresult.jpg"))
