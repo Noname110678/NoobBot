@@ -35,7 +35,7 @@ class Moderation(commands.Cog):
                 description=f"Now {user.mention} is unmuted!",
                 color=Colour.random()
             )
-            ctx.send(embed=mebed)
+            await ctx.send(embed=mebed)
         elif time.endswith("m"):
             await asyncio.sleep(time.split("m")[0] * 60)
             await user.remove_roles(muted_role, reason=None)
