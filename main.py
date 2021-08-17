@@ -80,7 +80,7 @@ async def reload(ctx, extension: str):
 @bot.command()
 async def oof(ctx):
     if ctx.author.id == 838402467858612224:
-        ctx.send("OOFING BOT...")
+        await ctx.send("OOFING BOT...")
         quit()
 
 for filename in os.listdir('./cogs'):

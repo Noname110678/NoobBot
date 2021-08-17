@@ -22,7 +22,7 @@ class User(commands.Cog):
                 await msg.add_reaction("🆗")
 
     @commands.command()
-    async def ball(self, ctx, question: str):
+    async def ball(self, ctx, *, question: str):
         responses = ["It is certain.",
                      "It is decidedly so.",
                      "Without a doubt.",
@@ -112,6 +112,7 @@ class User(commands.Cog):
         )
         embed.add_field(name="info", value="Shows the info of the bot!", inline=False)
         embed.add_field(name="ping", value="Shows the ping of the bot!", inline=False)
+        embed.add_field(name="demotivator", value="Sends a demotivator!", inline=False)
 
         if cmd == "info":
             mbed = Embed(
@@ -141,12 +142,13 @@ class User(commands.Cog):
 
     @commands.command()
     async def demotivator(self, ctx):
-        toptext = ctx.message.split("<top>")[1]
-        bottomtext = ctx.message.split("<bottom>")[1]
-        url = ctx.message.split("<url>")[1]
+        toptext = ctx.message.content.split(";")[0]
+        toptext = toptext.split(">demotivator")[1]
+        bottomtext = ctx.message.content.split(";")[1]
+        url = ctx.message.content.split(";")[2]
         dem = Demotivator(f'{toptext}', f'{bottomtext}')
         dem.create(f"{url}", url=True)
-        await ctx.send(file=discord.File("./demresult.jpg"))
+        await ctx.message.reply(file=discord.File("./demresult.jpg"))
 
 
 def setup(bot):
