@@ -9,28 +9,58 @@ from discord_slash.utils.manage_commands import create_option, create_choice, cr
 from discord.ext import commands
 
 
+
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
+
     @commands.command()
     @commands.has_permissions(manage_messages=True)
-    async def mute(self, ctx, user: Member, *, reason: str = None):
+    async def mute(self, ctx, user: Member, time, *, reason: str = None):
         guild = ctx.guild
-        muted_role = discord.utils.get(guild.roles, name="Muted")
+        muted_role = discord.utils.get(guild.roles, name="NoobBotPunishment")
         if not muted_role:
-            muted_role = await guild.create_role(name="Muted")
+            muted_role = await guild.create_role(name="NoobBotPunishment")
             for channel in guild.channels:
                 await channel.set_permissions(muted_role, speak=False, send_messages=False, read_message_history=True,
                                               read_messages=True)
         await user.add_roles(muted_role, reason=reason)
+        if time.endswith("s"):
+            await asyncio.sleep(time.split("s")[0])
+            await user.remove_roles(muted_role, reason=None)
+            mebed = Embed(
+                title="Unmuted",
+                description=f"Now {user.mention} is unmuted!",
+                color=Colour.random()
+            )
+            ctx.send(embed=mebed)
+        elif time.endswith("m"):
+            await asyncio.sleep(time.split("m")[0] * 60)
+            await user.remove_roles(muted_role, reason=None)
+            mebed = Embed(
+                title="Unmuted",
+                description=f"Now {user.mention} is unmuted!",
+                color=Colour.random()
+            )
+            await ctx.send(embed=mebed)
+        elif time.endswith("h"):
+            await asyncio.sleep(time.split("h")[0] * 3600)
+            await user.remove_roles(muted_role, reason=None)
+            mebed = Embed(
+                title="Unmuted",
+                description=f"Now {user.mention} is unmuted!",
+                color=Colour.random()
+            )
+            await ctx.send(embed=mebed)
         mbed = Embed(
             title="Muted",
-            description=f"Now {user.mention} is muted!",
+            description=f"{user.mention} is now muted!",
             color=Colour.random()
         )
         await ctx.send(embed=mbed)
-        await user.send(f"Looks like you've got muted in {guild.name}! Please ask owner to unmute you!")
+        await user.send(f"Looks like you've got muted in {guild.name}!")
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
@@ -41,11 +71,11 @@ class Moderation(commands.Cog):
         else:
             user.remove_roles(muted_role, reason=None)
             mbed = Embed(
-                title="Muted",
-                description=f"Now {user.mention} is muted!",
+                title="Unmuted",
+                description=f"Now {user.mention} is unmuted!",
                 color=Colour.random()
             )
-            ctx.send()
+            ctx.send(embed=mbed)
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
@@ -60,7 +90,7 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member: str, reason: str):
+    async def kick(self, ctx, member: Member, *, reason: str):
         mbed = Embed(
             title="Kicked!",
             description=f"Kicked {member.mention}, reason is {reason}",
@@ -72,7 +102,7 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: Member, reason: str):
+    async def ban(self, ctx, member: Member, *, reason: str):
         mbed = Embed(
             title="Banned!",
             description=f"Banned {member.mention}, reason is {reason}",
@@ -101,19 +131,6 @@ class Moderation(commands.Cog):
                 return
 
 
-    @commands.command()
-    @commands.has_permissions(manage_messages=True)
-    async def event(self, ctx):
-        title = ctx.message.content.split("<title>")[1]
-        description = ctx.message.content.split("<description>")[1]
-        embed = Embed(
-            title=title,
-            description=description,
-            color=Colour.random()
-        )
-        embed.set_footer(text=f"Hosted by {ctx.author}", icon_url=ctx.author.avatar_url)
-        to_react = await ctx.send(embed=embed)
-        await to_react.add_reaction("✅")
 
 
 def setup(bot):

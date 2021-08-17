@@ -27,6 +27,10 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.do_not_disturb,
                             activity=discord.Game(name="Discord Running Commands..."))
 
+@bot.event
+async def on_member_join(member, ctx):
+    if member.id == 838402467858612224:
+        ctx.send("Thanks for adding NoobBot! The prefix is **>** >help for commands")
     
 # COGS COMMANDS
 
