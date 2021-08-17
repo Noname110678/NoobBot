@@ -25,7 +25,7 @@ slash = SlashCommand(bot, sync_commands=True)
 async def on_ready():
     print("Bot is ready!")
     await bot.change_presence(status=discord.Status.do_not_disturb,
-                            activity=discord.Game(name="Discord Running Commands..."))
+                            activity=discord.Streaming(name="Working", url="https://www.twitch.tv/noname110567e"))
 
 @bot.event
 async def on_member_join(member, ctx):
