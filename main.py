@@ -24,13 +24,13 @@ slash = SlashCommand(bot, sync_commands=True)
 @bot.event
 async def on_ready():
     print("Bot is ready!")
-    await bot.change_presence(status=discord.Status.do_not_disturb,
-                            activity=discord.Streaming(name="Working", url="https://www.twitch.tv/noname110567e"))
+    await bot.change_presence(status=discord.Status.idle,
+                            activity=discord.Game(name="Sorry people bot can't work rn cus owner is on vacation and it needs some fixes and etc. Have a nice"))
 
 @bot.event
 async def on_member_join(member, ctx):
     if member.id == 838402467858612224:
-        ctx.send("Thanks for adding NoobBot! The prefix is **>** >help for commands")
+        await ctx.send("Thanks for adding NoobBot! The prefix is **>** >help for commands")
     
 # COGS COMMANDS
 
