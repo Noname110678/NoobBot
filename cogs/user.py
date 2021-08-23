@@ -64,20 +64,28 @@ class User(commands.Cog):
         descmsg = await ctx.message.reply("Write description of embeed please!", delete_after=15.0)
         desc = await self.bot.wait_for('message', check=check)
         await descmsg.delete()
-        colormsg = await ctx.message.reply("write rgb code in this syntax **rgb(code)** **RANDOM** for random color")
+        colormsg = await ctx.message.reply("write rgb code in this syntax **255,255,255** (As example u may do whatever code u want) **RANDOM** for random color")
         color = await self.bot.wait_for('message', check=check)
-        if color.content is not "RANDOM":
-            color = color.content.split(")")[0].split("rgb(")[1]
+        if color.content != "RANDOM":
+            colore = color.content.split(",")
+            red = colore[0]
+            red = int(red)
+            green = colore[1]
+            green = int(green)
+            blue = colore[2]
+            blue = int(blue)
             embed = Embed(
-            title = title.content, description = desc.content, color=Colour.from_rgb(color)
+            title = title.content, description = desc.content, color=Colour.from_rgb(red, green, blue)
         )
         else:
             embed = Embed(
             title = title.content, description = desc.content, color=Colour.random()
         )
         await colormsg.delete()
-
         await ctx.message.reply(embed=embed) # epok!!! :D:D:D:D::D hahahahhaha ez
+        await color.delete()
+        await desc.delete()
+        await title.delete()
 
         # making da embed :))))
         
