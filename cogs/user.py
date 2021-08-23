@@ -55,7 +55,7 @@ class User(commands.Cog):
         def check(message):
             return message.author == ctx.author and message.channel == ctx.channel
         
-        colRandom = False
+        colRandom = False # hello disfard :DD:D:D:D::D:D:D:D:D::D:D:D:D:D:
 
         titlemsg = await ctx.message.reply("Write title of embed please!", delete_after=15.0)
         title = await self.bot.wait_for('message', check=check)  
@@ -77,7 +77,7 @@ class User(commands.Cog):
         )
         await colormsg.delete()
 
-        await ctx.message.reply(embed=embed)
+        await ctx.message.reply(embed=embed) # epok!!! :D:D:D:D::D hahahahhaha ez
 
         # making da embed :))))
         
