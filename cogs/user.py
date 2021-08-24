@@ -82,9 +82,12 @@ class User(commands.Cog):
             title = title.content, description = desc.content, color=Colour.random()
         )
         await colormsg.delete()
-        await ctx.message.reply(embed=embed) # epok!!! :D:D:D:D::D hahahahhaha ez
+        await ctx.message.reply(embed=embed)
+        await asyncio.sleep(1)
         await color.delete()
+        await asyncio.sleep(1)
         await desc.delete()
+        await asyncio.sleep(1)
         await title.delete()
 
         # making da embed :))))
@@ -187,7 +190,7 @@ class User(commands.Cog):
 
         topmsg = await ctx.message.reply("Please send what should be in demotivator as top text",delete_after=15.0)
         top = await self.bot.wait_for('message', check=check)
-        await topmsg.delete()
+        await topmsg.delete() # ea
 
         bottommsg = await ctx.message.reply("Please send what should be in demotivator as bottom text",delete_after=15.0)
         bottom = await self.bot.wait_for('message', check=check)

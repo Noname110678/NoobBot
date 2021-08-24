@@ -9,7 +9,7 @@ from discord.ext import commands
 
 class Pictures(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
+        self.bot = bot # bot lol
 
     # @cog_ext.cog_slash(description="Random Cat Photo")
     @commands.command()
