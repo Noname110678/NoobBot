@@ -188,7 +188,7 @@ class Moderation(commands.Cog):
 
         if not time.endswith("d"):
 
-            embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME",
+            embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME", #e
                           color=Colour.random())
             embed.add_field(name="Time syntaxes", value="1s = 1 Second\n 1m = 1 Minute\n 1h = 1 Hour\n 1d = 1 Day")
             embed.add_field(name="Correct syntax", value=">ban @mention time reason")
