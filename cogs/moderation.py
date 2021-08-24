@@ -154,17 +154,39 @@ class Moderation(commands.Cog):
             embed.add_field(name="Example of command", value=f">ban {self.bot.user.mention} 1d Innapropriate content")
             await ctx.message.reply(embed=embed)
             return
-        if not time:
-            embed = Embed(title="Syntax error!", description="I didnt understood what time. ERROR: MISSING BAN TIME",
+
+
+        if not time.endswith("s"):
+
+            embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME",
                           color=Colour.random())
             embed.add_field(name="Time syntaxes", value="1s = 1 Second\n 1m = 1 Minute\n 1h = 1 Hour\n 1d = 1 Day")
-            embed.add_field(name="Correct syntax", value=">ban @mention **time** reason")
-            embed.add_field(name="Example of command", value=f">ban {self.bot.user.mention} 1d Innapropriate content")
+            embed.add_field(name="Correct syntax", value=">ban @mention time reason")
+            embed.add_field(name="Example of command", value=f">ban {self.bot.user.mention} **1d** Innapropriate content")
             await ctx.message.reply(embed=embed)
             return
 
+        if not time.endswith("m"):
 
-        if not time.endswith("s") or time.endswith("m") or time.endswith("h") or time.endswith("d"):
+            embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME",
+                          color=Colour.random())
+            embed.add_field(name="Time syntaxes", value="1s = 1 Second\n 1m = 1 Minute\n 1h = 1 Hour\n 1d = 1 Day")
+            embed.add_field(name="Correct syntax", value=">ban @mention time reason")
+            embed.add_field(name="Example of command", value=f">ban {self.bot.user.mention} **1d** Innapropriate content")
+            await ctx.message.reply(embed=embed)
+            return
+
+        if not time.endswith("h"):
+
+            embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME",
+                          color=Colour.random())
+            embed.add_field(name="Time syntaxes", value="1s = 1 Second\n 1m = 1 Minute\n 1h = 1 Hour\n 1d = 1 Day")
+            embed.add_field(name="Correct syntax", value=">ban @mention time reason")
+            embed.add_field(name="Example of command", value=f">ban {self.bot.user.mention} **1d** Innapropriate content")
+            await ctx.message.reply(embed=embed)
+            return
+
+        if not time.endswith("d"):
 
             embed = Embed(title="Syntax error!", description="Whats time of ban? ERROR: INCORRECT BAN TIME",
                           color=Colour.random())
