@@ -22,8 +22,8 @@ slash = SlashCommand(bot, sync_commands=True)
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name}#{bot.user.discriminator}")
-    await bot.change_presence(status=discord.Status.idle,
-                            activity=discord.Game(name="Noname cares about bot?"))
+    await bot.change_presence(status=discord.Status.online,
+                            activity=discord.Game(name="Bot is up again! :D"))
 
 @bot.event
 async def on_member_join(member, ctx):
