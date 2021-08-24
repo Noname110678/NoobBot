@@ -56,7 +56,7 @@ class Moderation(commands.Cog):
             description=f"{user.mention} got muted by reason {reason}",
             color=Colour.random()
         )
-        ctx.message.reply(embed=mbed, delete_after=8.0)
+        await ctx.message.reply(embed=mbed, delete_after=8.0)
         await user.add_roles(mute_role, reason=reason)
         await user.send(f"You got muted in **{guild.name}**! Reason is: {reason}")
         await asyncio.sleep(timemute)
